@@ -13,6 +13,16 @@ class hanlon (
 
   ensure_packages(['git-core', 'ruby', 'rubygems', 'ruby1.9.1-dev', 'libssl-dev', 'bundler'])
 
+  if($dbtype == 'postgres') {
+    ensure_packages(['libpq-dev'])
+
+    package { 'pg':
+      ensure    => installed,
+      provider  => gem,
+    }
+
+  }
+
   vcsrepo { "${install_dir}":
     ensure   => present,
     provider => 'git',
