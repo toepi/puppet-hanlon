@@ -31,7 +31,7 @@ class hanlon (
   }
 
   exec { 'install hanlon':
-    command => 'bundle install',
+    command => 'bundle install --without test',
     cwd     => $install_dir,
     unless  => 'bundle check',
     path    => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
