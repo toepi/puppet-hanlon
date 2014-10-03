@@ -52,11 +52,11 @@ class hanlon (
     content => template('hanlon/hanlon_server.conf'),
   }
 
-  file { "${install_dir}/cli/conf":
+  file { "${install_dir}/cli/config":
     ensure => directory,
   }
 
-  file { "${install_dir}/cli/conf/hanlon_client.conf":
+  file { "${install_dir}/cli/config/hanlon_client.conf":
     ensure  => link,
     target  => '/etc/hanlon/client.conf',
     require => File['/etc/hanlon/client.conf'],
