@@ -72,4 +72,9 @@ class hanlon (
     require => File['/etc/hanlon/server.conf'],
   }
 
+  Vcsrepo["${install_dir}"] ->
+  Exec['install hanlon'] ->
+  File['/etc/hanlon/server.conf'] ->
+  File["${install_dir}/web/config/hanlon_server.conf"]
+
 }
