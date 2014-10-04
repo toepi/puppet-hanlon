@@ -62,6 +62,10 @@ class hanlon (
     require => File['/etc/hanlon/client.conf'],
   }
 
+  file { "${install_dir}/cli/log":
+    ensure  => directory,
+  }
+
   file { "${install_dir}/web/config":
     ensure  => directory,
   }
@@ -77,6 +81,7 @@ class hanlon (
   File['/etc/hanlon/client.conf'] ->
   Exec['install hanlon'] ->
   File["${install_dir}/web/config"] ->
-  File["${install_dir}/cli/config"]
+  File["${install_dir}/cli/config"] ->
+  File["${install_dir}/cli/log"]
 
 }
