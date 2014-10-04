@@ -73,8 +73,10 @@ class hanlon (
   }
 
   Vcsrepo["${install_dir}"] ->
-  Exec['install hanlon'] ->
   File['/etc/hanlon/server.conf'] ->
-  File["${install_dir}/web/config/hanlon_server.conf"]
+  File['/etc/hanlon/client.conf'] ->
+  Exec['install hanlon'] ->
+  File["${install_dir}/web/config"] ->
+  File["${install_dir}/cli/config"]
 
 }
