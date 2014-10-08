@@ -11,7 +11,13 @@ class hanlon (
   $dbpwd       = '',
 ){
 
-  ensure_packages(['git-core', 'ruby', 'rubygems', 'ruby1.9.1-dev', 'libssl-dev', 'bundler'])
+  ensure_packages(['git-core', 'ruby', 'ruby1.9.1-dev', 'libssl-dev', 'bundler'])
+
+  case $::operatingsystem {
+    'Debian': {
+      ensure_packages(['rubygems'])
+    }
+  }
 
   if($dbtype == 'postgres') {
     ensure_packages(['libpq-dev'])
